@@ -1,0 +1,4 @@
+caprica
+=======
+
+Pretty capistrano recipes
