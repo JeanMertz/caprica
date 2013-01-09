@@ -14,94 +14,86 @@ notifications while running `Cap`.
 
 It changes this
 
-```bash
- $ be cap deploy:check
+    $ be cap deploy:check
 
-    triggering load callbacks
-  * 2013-01-09 13:37:01 executing `staging'
-    triggering start callbacks for `deploy:check'
-  * 2013-01-09 13:37:02 executing `multistage:ensure'
-  * 2013-01-09 13:37:03 executing `deploy:check'
-  * executing "test -d /var/www/caprica/releases"
-    servers: ["127.0.0.1"]
-    [root@127.0.0.1] executing command
-    command finished in 90ms
-  * executing "test -w /var/www/caprica"
-    servers: ["127.0.0.1"]
-    [root@127.0.0.1] executing command
-    command finished in 74ms
-  * executing "test -w /var/www/caprica/releases"
-    servers: ["127.0.0.1"]
-    [root@127.0.0.1] executing command
-    command finished in 68ms
-  * executing "which git"
-    servers: ["127.0.0.1"]
-    [root@127.0.0.1] executing command
-    command finished in 74ms
-  * executing "which rsync"
-    servers: ["127.0.0.1"]
-    [root@127.0.0.1] executing command
-    command finished in 68ms
-  * executing "test -w /var/www/caprica/shared"
-    servers: ["127.0.0.1"]
-    [root@127.0.0.1] executing command
-    command finished in 74ms
-The following dependencies failed. Please check them and try again:
---> `/var/www/caprica/releases' does not exist. Please run `cap deploy:setup'. (root@127.0.0.1)
---> You do not have permissions to write to `/var/www/caprica'. (root@127.0.0.1)
---> You do not have permissions to write to `/var/www/caprica/releases'. (root@127.0.0.1)
---> `/var/www/caprica/shared' is not writable (root@127.0.0.1)
-```
+        triggering load callbacks
+      * 2013-01-09 13:37:01 executing `staging'
+        triggering start callbacks for `deploy:check'
+      * 2013-01-09 13:37:02 executing `multistage:ensure'
+      * 2013-01-09 13:37:03 executing `deploy:check'
+      * executing "test -d /var/www/caprica/releases"
+        servers: ["127.0.0.1"]
+        [root@127.0.0.1] executing command
+        command finished in 90ms
+      * executing "test -w /var/www/caprica"
+        servers: ["127.0.0.1"]
+        [root@127.0.0.1] executing command
+        command finished in 74ms
+      * executing "test -w /var/www/caprica/releases"
+        servers: ["127.0.0.1"]
+        [root@127.0.0.1] executing command
+        command finished in 68ms
+      * executing "which git"
+        servers: ["127.0.0.1"]
+        [root@127.0.0.1] executing command
+        command finished in 74ms
+      * executing "which rsync"
+        servers: ["127.0.0.1"]
+        [root@127.0.0.1] executing command
+        command finished in 68ms
+      * executing "test -w /var/www/caprica/shared"
+        servers: ["127.0.0.1"]
+        [root@127.0.0.1] executing command
+        command finished in 74ms
+    The following dependencies failed. Please check them and try again:
+    --> `/var/www/caprica/releases' does not exist. Please run `cap deploy:setup'. (root@127.0.0.1)
+    --> You do not have permissions to write to `/var/www/caprica'. (root@127.0.0.1)
+    --> You do not have permissions to write to `/var/www/caprica/releases'. (root@127.0.0.1)
+    --> `/var/www/caprica/shared' is not writable (root@127.0.0.1)
 
 into this:
 
-```bash
- $ be cap deploy:check -vv
+    $ be cap deploy:check -vv
 
-➞   Set the target stage to `staging'. .................. ✓
-➞   [internal] Ensure that a stage has been selected. ... ✓
-➞   Test deployment dependencies.
-    executing "test -d /var/www/caprica/releases"
-    executing "test -w /var/www/caprica"
-    executing "test -w /var/www/caprica/releases"
-    executing "which git"
-    executing "which rsync"
-➞   Test deployment dependencies. ....................... ✘ failed dependencies
-➞   `/var/www/caprica/releases' does not exist. Please run `cap deploy:setup'. (root@127.0.0.1)
-➞   You do not have permissions to write to `/var/www/caprica'. (root@127.0.0.1)
-➞   You do not have permissions to write to `/var/www/caprica/releases'. (root@127.0.0.1)
-➞   `/var/www/caprica/shared' is not writable (root@127.0.0.1)
-```
+    ➞   Set the target stage to `staging'. .................. ✓
+    ➞   [internal] Ensure that a stage has been selected. ... ✓
+    ➞   Test deployment dependencies.
+        executing "test -d /var/www/caprica/releases"
+        executing "test -w /var/www/caprica"
+        executing "test -w /var/www/caprica/releases"
+        executing "which git"
+        executing "which rsync"
+    ➞   Test deployment dependencies. ....................... ✘ failed dependencies
+    ➞   `/var/www/caprica/releases' does not exist. Please run `cap deploy:setup'. (root@127.0.0.1)
+    ➞   You do not have permissions to write to `/var/www/caprica'. (root@127.0.0.1)
+    ➞   You do not have permissions to write to `/var/www/caprica/releases'. (root@127.0.0.1)
+    ➞   `/var/www/caprica/shared' is not writable (root@127.0.0.1)
 
 or this:
 
-```bash
-$ cap nginx:install
+    $ cap nginx:install
 
-➞   Set the target stage to `staging'. .... ✓
-➞   Test deployment dependencies. ......... ⣾ executing "test -d /var/www/caprica/releases"
-➞   Test deployment dependencies. ......... ⣽ executing "test -w /var/www/caprica"
-➞   Test deployment dependencies. ......... ⣻ executing "test -w /var/www/caprica/releases"
-➞   Test deployment dependencies. ......... ⣻ executing "which git"
-➞   Test deployment dependencies. ......... ⢿ executing "which rsync"
-➞   Test deployment dependencies. ......... ✘ failed dependencies
-➞   `/var/www/graduation/releases' does not exist. Please run `cap deploy:setup'. (root@178.79.130.64)
-➞   You do not have permissions to write to `/var/www/graduation'. (root@178.79.130.64)
-➞   You do not have permissions to write to `/var/www/graduation/releases'. (root@178.79.130.64)
-➞   `/var/www/graduation/shared' is not writable (root@178.79.130.64)
-```
+    ➞   Set the target stage to `staging'. .... ✓
+    ➞   Test deployment dependencies. ......... ⣾ executing "test -d /var/www/caprica/releases"
+    ➞   Test deployment dependencies. ......... ⣽ executing "test -w /var/www/caprica"
+    ➞   Test deployment dependencies. ......... ⣻ executing "test -w /var/www/caprica/releases"
+    ➞   Test deployment dependencies. ......... ⣻ executing "which git"
+    ➞   Test deployment dependencies. ......... ⢿ executing "which rsync"
+    ➞   Test deployment dependencies. ......... ✘ failed dependencies
+    ➞   `/var/www/graduation/releases' does not exist. Please run `cap deploy:setup'. (root@178.79.130.64)
+    ➞   You do not have permissions to write to `/var/www/graduation'. (root@178.79.130.64)
+    ➞   You do not have permissions to write to `/var/www/graduation/releases'. (root@178.79.130.64)
+    ➞   `/var/www/graduation/shared' is not writable (root@178.79.130.64)
 
 *The 'Install nginx' lines will actually replace previous line after each
 step. resulting in a two line final output:*
 
-```bash
-➞   Set the target stage to `staging'. .... ✓
-➞   Test deployment dependencies. ......... ✘ failed dependencies
-➞   `/var/www/graduation/releases' does not exist. Please run `cap deploy:setup'. (root@178.79.130.64)
-➞   You do not have permissions to write to `/var/www/graduation'. (root@178.79.130.64)
-➞   You do not have permissions to write to `/var/www/graduation/releases'. (root@178.79.130.64)
-➞   `/var/www/graduation/shared' is not writable (root@178.79.130.64)
-```
+    ➞   Set the target stage to `staging'. .... ✓
+    ➞   Test deployment dependencies. ......... ✘ failed dependencies
+    ➞   `/var/www/graduation/releases' does not exist. Please run `cap deploy:setup'. (root@178.79.130.64)
+    ➞   You do not have permissions to write to `/var/www/graduation'. (root@178.79.130.64)
+    ➞   You do not have permissions to write to `/var/www/graduation/releases'. (root@178.79.130.64)
+    ➞   `/var/www/graduation/shared' is not writable (root@178.79.130.64)
 
 ### Three
 
@@ -110,21 +102,19 @@ advantage of the styling provided by 'Six'.
 
 Here is a list of the currently supported tasks:
 
-```
-nginx:setup
-nginx:install
-nginx:reload
-nginx:config
-nginx:sites:available
-nginx:sites:enable
-nginx:sites:disable
-```
+    nginx:setup
+    nginx:install
+    nginx:reload
+    nginx:config
+    nginx:sites:available
+    nginx:sites:enable
+    nginx:sites:disable
 
 For all tasks and their descriptions, see the README in `lib/caprica/three`.
 
 ### Six
 
-Prettify Capistrano output.
+Prettify Capistrano output. See [ascii.io](http://ascii.io/a/1805) for an (early prototype) example.
 
 ## Installation
 
