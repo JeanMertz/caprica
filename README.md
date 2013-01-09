@@ -14,7 +14,7 @@ notifications while running `Cap`.
 
 It changes this
 
-    $ be cap deploy:check
+    $ cap deploy:check
 
         triggering load callbacks
       * 2013-01-09 13:37:01 executing `staging'
@@ -53,7 +53,7 @@ It changes this
 
 into this:
 
-    $ be cap deploy:check -vv
+    $ cap deploy:check -vv
 
     ➞   Set the target stage to `staging'. .................. ✓
     ➞   [internal] Ensure that a stage has been selected. ... ✓
@@ -71,7 +71,7 @@ into this:
 
 or this:
 
-    $ cap nginx:install
+    $ cap deploy:check
 
     ➞   Set the target stage to `staging'. .... ✓
     ➞   Test deployment dependencies. ......... ⣾ executing "test -d /var/www/caprica/releases"
@@ -80,20 +80,20 @@ or this:
     ➞   Test deployment dependencies. ......... ⣻ executing "which git"
     ➞   Test deployment dependencies. ......... ⢿ executing "which rsync"
     ➞   Test deployment dependencies. ......... ✘ failed dependencies
-    ➞   `/var/www/graduation/releases' does not exist. Please run `cap deploy:setup'. (root@178.79.130.64)
-    ➞   You do not have permissions to write to `/var/www/graduation'. (root@178.79.130.64)
-    ➞   You do not have permissions to write to `/var/www/graduation/releases'. (root@178.79.130.64)
-    ➞   `/var/www/graduation/shared' is not writable (root@178.79.130.64)
+    ➞   `/var/www/caprica/releases' does not exist. Please run `cap deploy:setup'. (root@127.0.0.1)
+    ➞   You do not have permissions to write to `/var/www/caprica'. (root@127.0.0.1)
+    ➞   You do not have permissions to write to `/var/www/caprica/releases'. (root@127.0.0.1)
+    ➞   `/var/www/caprica/shared' is not writable (root@127.0.0.1)
 
 *The 'Install nginx' lines will actually replace previous line after each
 step. resulting in a two line final output:*
 
     ➞   Set the target stage to `staging'. .... ✓
     ➞   Test deployment dependencies. ......... ✘ failed dependencies
-    ➞   `/var/www/graduation/releases' does not exist. Please run `cap deploy:setup'. (root@178.79.130.64)
-    ➞   You do not have permissions to write to `/var/www/graduation'. (root@178.79.130.64)
-    ➞   You do not have permissions to write to `/var/www/graduation/releases'. (root@178.79.130.64)
-    ➞   `/var/www/graduation/shared' is not writable (root@178.79.130.64)
+    ➞   `/var/www/caprica/releases' does not exist. Please run `cap deploy:setup'. (root@127.0.0.1)
+    ➞   You do not have permissions to write to `/var/www/caprica'. (root@127.0.0.1)
+    ➞   You do not have permissions to write to `/var/www/caprica/releases'. (root@127.0.0.1)
+    ➞   `/var/www/caprica/shared' is not writable (root@127.0.0.1)
 
 ### Three
 
@@ -128,7 +128,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install caprica
+    $ gem install caprica --pre
 
 ## Usage
 
