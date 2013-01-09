@@ -1,0 +1,7 @@
+require 'caprica/three/nginx/setup'
+require 'caprica/three/nginx/install'
+require 'caprica/three/nginx/reload'
+require 'caprica/three/nginx/config'
+require 'caprica/three/nginx/sites_available'
+require 'caprica/three/nginx/sites_enable'
+require 'caprica/three/nginx/sites_disable'
